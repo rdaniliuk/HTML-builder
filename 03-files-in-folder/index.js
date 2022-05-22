@@ -7,9 +7,10 @@ fs.readdir(path.join(__dirname, 'secret-folder'), (err, files) => {
   files.forEach((fileName) => {
     let {ext, name} = path.parse(fileName);
     fs.stat(path.join(__dirname, 'secret-folder', fileName), (err, stats) => {
-      if (err) { throw err;}
-      let size = stats.size / 1000;
-      console.log(`${name} - ${ext.slice(1)} - ${size}kb`);
+      if(stats.isFile()) {
+        let size = stats.size / 1000;
+        console.log(`${name} - ${ext.slice(1)} - ${size}kb`);
+      }
     });
   });
 });
