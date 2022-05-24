@@ -3,7 +3,13 @@ const { stdin, exit } = require('process');
 const path = require('path');
 let inputDate = '';
 
-
+fs.writeFile(
+  path.join(__dirname, 'text.txt'),
+  inputDate,
+  (err) => {
+    if (err) throw err;
+  }
+);
 console.log('Привет, напиши сообщение или exit для выхода');
 stdin.on('data', data => {
   if(data.toString() === 'exit\r\n') {
